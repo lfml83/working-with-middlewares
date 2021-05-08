@@ -11,16 +11,12 @@
 
 ## Regras de negócios
 
-- [] Should be able to list all user's todos - 201
-- [] Should be able to create a new todo - 400
-- [] Middleware message test - 404
-- [] Should be able to update a todo - 
-- [] Should not be able to update a non existing todo - 404 
-- [] Should be able to mark a todo as done - 
-- [] Should not be able to mark a non existing todo as done - 404 
-- [] Should be able to delete a todo - 
-- [] Should not be able to delete a non existing todo - 
-- [] 
-- [] 
-
-
+- [x] Should be able to find user by username in header and pass it to request.user 
+- [x] Should not be able to find a non existing user by username in header
+- [] Should be able to let user create a new todo when is in free plan and have less than ten todos
+- []
+- []
+- []
+- []
+- []
+- []
