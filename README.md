@@ -13,9 +13,9 @@
 
 - [x] Should be able to find user by username in header and pass it to request.user 
 - [x] Should not be able to find a non existing user by username in header
-- [] Should be able to let user create a new todo when is in free plan and have less than ten todos
-- []
-- []
+- [x] Should be able to let user create a new todo when is in free plan and have less than ten todos
+- [x] Should not be able to let user create a new todo when is not Pro and already have ten todos
+- [x] Should be able to let user create infinite new todos when is in Pro plan
 - []
 - []
 - []

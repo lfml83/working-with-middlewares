@@ -20,13 +20,31 @@ function checksExistsUserAccount(request, response, next) {
      return response.status(404).json({error : "User not found!"});
    }
 
-   request.user=user;
+  request.user=user;
 
    return next();
 }
 
 function checksCreateTodosUserAvailability(request, response, next) {
   // Complete aqui
+  const { user } = request;
+
+  const lengthTodos = user.todos.length;
+
+  if((user.pro=== false) &&  (lengthTodos< 10)){
+    //verificando se ele esta no plano free e tem menos que 10 todos
+    return next();
+  }
+
+  if(lengthTodos>=10 && user.pro=== false){
+    return response.status(403).json({error : "The user has exceeded the limi of 10 todo for fre plan!"})
+  }
+
+  if(user.pro=== true){
+    // se o usuario tem plano Pro , nao tem limitaçoes de todos
+    return next();
+  }
+
 }
 
 function checksTodoExists(request, response, next) {
@@ -98,6 +116,7 @@ app.post('/todos', checksExistsUserAccount, checksCreateTodosUserAvailability, (
   user.todos.push(newTodo);
 
   return response.status(201).json(newTodo);
+
 });
 
 app.put('/todos/:id', checksTodoExists, (request, response) => {
