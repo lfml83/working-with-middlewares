@@ -48,7 +48,31 @@ function checksCreateTodosUserAvailability(request, response, next) {
 }
 
 function checksTodoExists(request, response, next) {
-  // Complete aqui
+  
+ const {username} = request.headers;
+
+ const {id} = request.params;
+
+ if(validate(id)===false){
+  return response.status(400).json({error : "ID not valid!"})
+ }
+
+ const user = users.find(user => user.username===username);
+
+ if(!user){
+  return response.status(404).json({error : "User not found!"});
+}
+
+ const idTodo = user.todos.find(user => user.id===id);
+
+ if(!idTodo){
+   return response.status(404).json({error : "Todo does not exists!"})
+ }
+
+ request.todo =idTodo;
+ request.user=user;
+
+ next();
 }
 
 function findUserById(request, response, next) {
@@ -98,7 +122,10 @@ app.patch('/users/:id/pro', findUserById, (request, response) => {
 app.get('/todos', checksExistsUserAccount, (request, response) => {
   const { user } = request;
 
-  return response.json(user.todos);
+  //return response.json(user.todos);
+
+  return response.json(user);
+
 });
 
 app.post('/todos', checksExistsUserAccount, checksCreateTodosUserAvailability, (request, response) => {
