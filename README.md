@@ -1,6 +1,8 @@
 
 
-## rules (middewares to complete)
+## rules (middlewares to complete)
+
+### All the middlewares has been completed as the followings rules
 
 - [x] Should be able to find user by username in header and pass it to request.user 
 - [x] Should not be able to find a non existing user by username in header
